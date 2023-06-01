@@ -1,0 +1,117 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  width:90%;
+  margin: 50px auto;
+  padding: 10px;
+  border-radius: 8px;
+}
+.App h1{
+  text-align: center;
+}
+.form{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 12px
+}
+.form input[type="text"]{
+  padding:10px;
+  width: 85%;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+.form input[type="text"]:focus,
+.form button[type="submit"]:focus{
+  outline:none;
+}
+.form button[type="submit"]{
+  background-color: #008080;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer
+}
+.todo-listItems{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  display: grid;
+  /* position: relative; */
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.todo-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  align-items: center;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #D3D3D3;
+  box-shadow: 7px 7px 10px rgba(0, 0, 255, .2);
+  /* position: relative; */
+}
+
+.item-content{
+  width: 90%;
+  padding-left: 5%;
+  /* text-align: center; */
+}
+
+.todo-item button{
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 8px;
+}
+.todo-item button:focus{
+  outline:none
+}
+
+.button-wrapper{
+  justify-content: flex-end;
+  display: flex;
+  width: 40%;
+  padding-right: 14%;
+  padding-bottom: 3%;
+  padding-left: 1%;
+  /* position: relative; */
+  /* z-index: 99;
+  float: right; */
+  /* float: inline-end; */
+}
+.update-item{
+  /* position: absolute;
+  left:20%; */
+  background-color: goldenrod;
+  color:#fff;
+  margin-right: 1%;
+}
+.delete-item{
+  /* position: absolute; */
+  background-color: red;
+  color:#fff;
+}
+.update-form{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.update-new-input{
+  width: 80%;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  padding: 8px;
+  outline: none;
+}
+.update-new-btn{
+  background-color: darkorchid;
+  color: #fff;
+  cursor: pointer;
+}
