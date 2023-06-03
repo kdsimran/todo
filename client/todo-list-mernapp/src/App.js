@@ -1,101 +1,66 @@
-import {useState, useEffect} from 'react';
-import axios from 'axios';
 import './App.css';
+import Todo from './components/Todo';
+// import Sidebar from './components/Sidebar';
+import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+
 
 function App() {
-  const [itemText, setItemText] = useState('');
-  const [listItems, setListItems] = useState([]);
-  const [isUpdating, setIsUpdating] = useState('');
-  const [updateItemText, setUpdateItemText] = useState('');
-
-  //add new todo item to database
-  const addItem = async (e) => {
-    e.preventDefault();
-    try{
-      const res = await axios.post('http://localhost:5500/api/item', {item: itemText})
-      setListItems(prev => [...prev, res.data]);
-      setItemText('');
-    }catch(err){
-      console.log(err);
-    }
-  }
-
-  //Create function to fetch all todo items from database -- we will use useEffect hook
-  useEffect(()=>{
-    const getItemsList = async () => {
-      try{
-        const res = await axios.get('http://localhost:5500/api/items')
-        setListItems(res.data);
-        console.log('render')
-      }catch(err){
-        console.log(err);
-      }
-    }
-    getItemsList()
-  },[]);
-
-  // Delete item when click on delete
-  const deleteItem = async (id) => {
-    try{
-      const res = await axios.delete(`http://localhost:5500/api/item/${id}`)
-      const newListItems = listItems.filter(item=> item._id !== id);
-      setListItems(newListItems);
-    }catch(err){
-      console.log(err);
-    }
-  }
-
-  //Update item
-  const updateItem = async (e) => {
-    e.preventDefault()
-    try{
-      const res = await axios.put(`http://localhost:5500/api/item/${isUpdating}`, {item: updateItemText})
-      console.log(res.data)
-      const updatedItemIndex = listItems.findIndex(item => item._id === isUpdating);
-      const updatedItem = listItems[updatedItemIndex].item = updateItemText;
-      setUpdateItemText('');
-      setIsUpdating('');
-    }catch(err){
-      console.log(err);
-    }
-  }
-  //before updating item we need to show input field where we will create our updated item
-  const renderUpdateForm = () => (
-    <form className="update-form" onSubmit={(e)=>{updateItem(e)}} >
-      <input className="update-new-input" type="text" placeholder="New Item" onChange={e=>{setUpdateItemText(e.target.value)}} value={updateItemText} />
-      <button className="update-new-btn" type="submit">Update</button>
-    </form>
-  )
 
   return (
-    <div className="App">
-      <h1>Todo List</h1>
-      <form className="form" onSubmit={e => addItem(e)}>
-        <input type="text" placeholder='Add Todo Item' onChange={e => {setItemText(e.target.value)} } value={itemText} />
-        <button type="submit">Add</button>
-      </form>
-      <div className="todo-listItems">
-        {
-          listItems.map(item => (
-          <div className="todo-item">
-            {
-              isUpdating === item._id
-              ? renderUpdateForm()
-              : <>
-                  <p className="item-content">{item.item}</p>
-                  <div className='button-wrapper'>
-                  <button className="update-item" onClick={()=>{setIsUpdating(item._id)}}>Update</button>
-                  <button className="delete-item" onClick={()=>{deleteItem(item._id)}}>Delete</button>
-                  </div>
-                </>
-            }
-          </div>
-          ))
-        }
-        
-
-      </div>
+    <div class="container">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-auto bg-light sticky-top">
+            <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top">
+                <a href="/" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                    <i class="bi-bootstrap fs-1"></i>
+                </a>
+                <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center align-items-center">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+                            <i class="bi-house fs-1"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+                            <i class="bi-speedometer2 fs-1"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Orders">
+                            <i class="bi-table fs-1"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Products">
+                            <i class="bi-heart fs-1"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
+                            <i class="bi-people fs-1"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi-person-circle h2"></i>
+                    </a>
+                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm p-3 min-vh-100">
+            <Todo/>
+        </div>
     </div>
+</div>
+<Todo />
+</div>
   );
 }
 

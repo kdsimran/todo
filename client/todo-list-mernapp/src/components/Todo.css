@@ -1,0 +1,108 @@
+.Todo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    width:90%;
+    margin: 50px auto;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .Todo h1{
+    text-align: center;
+  }
+  .form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 12px
+  }
+  .form input[type="text"]{
+    padding:10px;
+    width: 85%;
+    border: 1px solid #eee;
+    border-radius: 6px;
+  }
+  .form input[type="text"]:focus,
+  .form button[type="submit"]:focus{
+    outline:none;
+  }
+  .form button[type="submit"]{
+    background-color: #008080;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer
+  }
+  
+  /* .todo-listItems{
+  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2%;
+  /* border: 1px solid #D3D3D3; 
+  } */
+  
+  .item-content{
+    width: 90%;
+    padding-left: 5%;
+    padding-bottom: 5%;
+    /* text-align: center; */
+  }
+  
+  .todo-item{
+    border: 1px solid #D3D3D3;
+    padding-bottom: 5%;
+    position: relative;
+    /* margin: 1px auto; */
+  }
+  
+  .button-wrapper {
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+  }
+  
+  .update-item{
+    background-color: goldenrod;
+    color:#fff;
+    margin: 0 5px 0 0 ;
+  }
+  
+  
+  .delete-item{
+    background-color: red;
+    color:#fff;
+  }
+  
+  .update-form{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .update-new-input{
+    width: 80%;
+    border-radius: 6px;
+    border: 1px solid #eee;
+    padding: 8px;
+    outline: none;
+  }
+  .update-new-btn{
+    background-color: darkorchid;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .card-footer{
+    background-color:white;
+    /* border-color: white; */
+  }
+  
+  .todo-listItems {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
